@@ -1,0 +1,93 @@
+:root{
+    --main_color: #1C1C1C;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    color: gold;
+}
+
+a{
+    text-decoration: none;
+}
+
+#botonitos button{
+    margin-right: 1%;
+}
+
+#formularioCadastroP{
+    margin-bottom: 2%;
+}
+
+body{
+    background-color: var(--main_color);
+}
+
+#navbar{
+    display: flex;
+    background-color: var(--main_color);
+    justify-content: start;
+    flex-direction: row;
+    width: 100vw;
+    height: 9vh;
+    align-items: center;
+}
+
+#botonitos{
+    justify-content: space-around;
+}
+
+#container_banner {
+    align-items: center;
+    width: 100vw;
+    height: 50vh;
+    background-image: url('/images/banner_pizza.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    font-weight: bold;
+}
+
+#logo{
+    width: 20%;
+}
+
+#sloganzinho h2,p{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-container {
+    margin: 20px 0;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    background-color: var(--main_color);
+    color: gold;
+}
+
+.table{
+    color: gold;
+    background-color: var(--main_color);
+    border-color: gold;
+}
+
+.table thead th {
+    background-color: var(--main_color);
+    border-color: gold;
+}
+
+.btn-delete {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}

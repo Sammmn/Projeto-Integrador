@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Pedidos</title>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.3-dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/estilinho.css}">
+</head>
+<body>
+    <nav>
+        <div id="navbar">
+            <div id="botonitos" class="col-sm-4">
+                <button id="btnHome" class="btn btn-outline-warning btn-sm"><a th:href="@{/}">Início</a></button>
+                <button id="btnFazerPd" class="btn btn-outline-warning btn-sm"><a th:href="@{/cadastrarP}">Cadastrar pizzas</a></button>
+                <button id="btnVerP" class="btn btn-outline-warning btn-sm"><a th:href="@{/verP}">Ver pizzas</a></button>
+                <button id="btnFazerPd" class="btn btn-outline-warning btn-sm"><a th:href="@{/realizarPedido}">Realizar pedido</a></button>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Pedidos Realizados</h2>
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>Pizza</th>
+                        <th>Quantidade</th>
+                        <th>Total (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="pedido : ${listaPedidos}">
+                        <td th:text="${pedido.id}"></td>                 
+                        <td th:text="${pedido.cliente}"></td>
+                        <td th:text="${pedido.cpf}"></td>
+                        <td th:text="${pedido.telefone}"></td>
+                        <td th:text="${pedido.endereco}"></td>
+                        <td th:text="${pedido.pizza.nome}"></td>
+                        <td th:text="${pedido.quantidade}"></td>
+                        <td th:text="${pedido.precoTotal}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
