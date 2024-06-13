@@ -1,14 +1,39 @@
-package com.pi.pizinho.model;
+package com.pi.pizinho.data;
 
-public class Pedido {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
+@Entity
+@Table(name = "pedido")
+public class PedidoEntity {
+    
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
+    @NotBlank(message="Nome do cliente obrigatório") 
     private String cliente;
+    @NotBlank(message="Endereço do cliente obrigatório") 
     private String endereco;
+    @NotBlank(message="Telefone do cliente obrigatório") 
     private String telefone;
+    @NotBlank(message="CPF do cliente obrigatório") 
     private String cpf;
-    private Pizza pizza;
+    @ManyToOne
+    @JoinColumn(name = "pizza_id", referencedColumnName = "id")
+    private PizzaEntity pizza;
+    @NotNull(message="Quantidade obrigatório") 
     private int quantidade;
+    @NotNull(message="Preço obrigatório") 
     private float precoTotal;
 
 
@@ -51,11 +76,11 @@ public class Pedido {
         this.cpf = cpf; 
     }
 
-    public Pizza getPizza() {
+    public PizzaEntity getPizza() {
         return pizza; 
     }
     
-    public void setPizza(Pizza pizza) {
+    public void setPizza(PizzaEntity pizza) {
         this.pizza = pizza; 
     }
 

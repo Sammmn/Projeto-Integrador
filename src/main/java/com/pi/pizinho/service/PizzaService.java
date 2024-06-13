@@ -1,52 +1,43 @@
 package com.pi.pizinho.service;
 
-import com.pi.pizinho.model.Pizza;
-import java.util.ArrayList;
+import com.pi.pizinho.data.PizzaEntity;
+import com.pi.pizinho.data.PizzaEntityRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PizzaService {
     
-    private int contador = 1;
+    @Autowired
     
-    private ArrayList<Pizza> listaPizza;
-
-    public PizzaService() {
-        this.listaPizza = new ArrayList<>();
-    }
+    PizzaEntityRepository pzer;
     
-    public void cadastraPizza(Pizza pizza){
-        pizza.setId(contador);
-        listaPizza.add(pizza);
-        contador++;
+    public void cadastraPizza(PizzaEntity pizza){
+        pizza.setId(null);
+        pzer.save(pizza);
     }
     
     public void deletarPizza(Integer id){
-        Pizza p = getPizzaById(id);
-        listaPizza.remove(p);
+        pzer.deleteById(id);
     }
     
-    public void atualizarPizza(int id,Pizza pizza){
-        for(Pizza p: listaPizza){
-            if(p.getId() == id){
-                p.setNome(pizza.getNome());
-                p.setPreco(pizza.getPreco());
-                p.setSabor(pizza.getSabor());
-            }
-        }
-    }
-    
-    public List<Pizza> getPizzas(){
-        return this.listaPizza;
-    }
-    
-    public Pizza getPizzaById(int id){
-        for(Pizza p: listaPizza){
-            if(p.getId() == id){
-                return p;
-            }
+    public PizzaEntity atualizarPizza(int id,PizzaEntity pizza){
+        PizzaEntity p = getPizzaById(id);
+        if(p != null){
+            p.setNome(pizza.getNome());
+            p.setPreco(pizza.getPreco());
+            p.setSabor(pizza.getSabor());
+            return pzer.save(p);
         }
         return null;
+    }
+    
+    public List<PizzaEntity> getPizzas(){
+        return pzer.findAll();
+    }
+    
+    public PizzaEntity getPizzaById(int id){
+        return pzer.findById(id).orElse(null);
     }
 }
